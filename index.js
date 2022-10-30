@@ -1,14 +1,18 @@
-//const PORT =process.env.PORT  || 8888;
-const express= require('express')
-const data = require('./server')
+const {createServer} = require('http')
 
-const api = express()
+const server = createServer((request, response) =>{ 
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    response.write(JSON.stringify({
+        'slackUsername': 'beingEgo',
+        'backend': true, 
+        'age': 28, 
+        'bio': 'A determined lady, on her way to becoming a full stack web developer'}));
+    return response.end();
+});
 
-const HOST ='localhost'
-const PORT =8888
+server.listen(8080);l
 
-api.get('/',(req,res) =>{
-    res.status(200).json(data)
-      })
 
-api.listen(PORT, () => console.log('API running at ${HOST}:${PORT}'));
+
+
+

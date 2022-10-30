@@ -1,20 +1,29 @@
-const {createServer} = require('http')
+const http= require('http');
+const path = require('path');
+const fs = require('fs');
 
-const port= process.env.PORT || 8080
 
-const server = createServer((request, response) =>{ 
-    response.writeHead(200, {'Content-Type': 'application/json'});
-    response.write(JSON.stringify({
-        'slackUsername': 'beingEgo',
-        'backend': true, 
-        'age': 28, 
-        'bio': 'A determined lady, on her way to becoming a full stack web developer'}));
-    return response.end();
+
+const server = http.createServer((req, res) =>{ 
+    if (req.url === '/') {
+        res.end(JSON.stringify({
+            'slackUsername': 'beingEgo',
+            'backend': true, 
+            'age': 28, 
+            'bio': 'A determined lady, on her way to becoming a full stack web developer'}));
+    }
 });
-
-server.listen(8080);l
-
-
+const PORT= process.env.PORT || 8080
+server.listen(PORT, () => console.log(`Server Up at ${PORT}`));
+   
+   //response.writeHead(200, {'Content-Type': 'application/json'});
+    //response.write(JSON.stringify({
+      //  'slackUsername': 'beingEgo',
+      //  'backend': true, 
+      //  'age': 28, 
+      //  'bio': 'A determined lady, on her way to becoming a full stack web developer'}));
+  //  return response.end();
+//});
 
 
 
